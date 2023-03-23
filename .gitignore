@@ -127,3 +127,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Personal settings
+parquet/
+.ipynb_checkpoints/
+ipynb_checkpoints/
+crawler/ipynb_checkpoints/
+test.ipynb
+crawler/test.ipynb
+

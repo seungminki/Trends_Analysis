@@ -1,0 +1,7 @@
+asyncio==3.4.3
+python-telegram-bot==20.1
+python-dotenv==1.0.0
+selenium==4.8.2
+pyarrow==11.0.0
+pandas==1.5.3
+parquet-tools==0.2.12
