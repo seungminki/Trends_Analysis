@@ -20,7 +20,7 @@ def crawler_main(topic):
     
     url = f"https://search.naver.com/search.naver?query=%EB%B0%80%ED%81%AC%ED%8B%B0%20%EC%B4%88{topic}&nso=&where=article&sm=tab_opt"
     # 데이터 갯수가 너무 많을 때 몇개까지 뽑을 건지 정하기
-    end_num = 600
+    end_num = 10
 
     # 검색 결과가 나올때까지 대기
     driver = webdriver.Chrome(executable_path='crawler/chromedriver.exe', options=chrome_options)
@@ -57,12 +57,12 @@ def crawler_main(topic):
         driver.switch_to.window( driver.window_handles[-1] )
         time.sleep(1)
         driver.switch_to.frame("cafe_main")
+        driver.implicitly_wait(2)
         try:
-            # driver.implicitly_wait(5)
             second_text = driver.find_element("xpath", '//*[@id="app"]/div/div/div[2]/div[2]/div[1]/div/div[1]').text
-            date = driver.find_element("xpath", '//*[@id="app"]/div/div/div[2]/div[1]/div[2]/div[2]/div[2]/span[1]').text
-            click_count = driver.find_element("xpath", '//*[@id="app"]/div/div/div[2]/div[1]/div[2]/div[2]/div[2]/span[2]').text
-            # <div class="article_viewer">
+            date = driver.find_element(By.CLASS_NAME, "date").text
+            click_count = driver.find_element(By.CLASS_NAME, "count").text
+            # <div class="content Cateviewer">
 
         except NoSuchElementException as e:
             pass
@@ -104,3 +104,12 @@ if __name__ == '__main__':
     end = time.time()
 
     print("수행시간: %f 초" % (end - start))
+
+'''
+# 댓글 따오는 코드
+comment_num = len(driver.find_elements(By.CLASS_NAME, "CommentItem"))
+for i in range(1, comment_num+1):
+    # comment = driver.find_element(By.CLASS_NAME, "comment_text_box").text
+    comment = driver.find_element("xpath", f'//*[@id="app"]/div/div/div[2]/div[2]/div[4]/ul/li[{i}]/div/div/div[2]').text
+    print(comment)
+'''

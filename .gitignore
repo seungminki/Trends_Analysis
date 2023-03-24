@@ -135,4 +135,8 @@ ipynb_checkpoints/
 crawler/ipynb_checkpoints/
 test.ipynb
 crawler/test.ipynb
+test1.py 
 
+# git show-ref
+# refs/heads/master
+# git branch -m master main
